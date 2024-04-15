@@ -14965,6 +14965,10 @@ figure.woocommerce-product-gallery__wrapper {
   display: block;
 }
 
+html {
+  font-size: 16px;
+}
+
 .card__img-wrap {
   height: 200px;
 }

@@ -18,7 +18,8 @@ get_header();
             <h1 class="mb-5 text-center">Список всей недвижимости</h1>
             <div class="d-flex justify-content-center flex-wrap gap-3">
                 <?php foreach ($estate as $item) {
-                    $alt = get_post_meta(get_post_thumbnail_id($item->ID), '_wp_attachment_image_alt', true); ?>
+                    $alt = get_post_meta(get_post_thumbnail_id($item->ID), '_wp_attachment_image_alt', true);
+                    $term = get_the_terms($item->ID, 'type_of_estate') ?>
                     <div class="card" style="width: 18rem;">
                         <div class="card__img-wrap">
                             <!-- myClassName is defined in my CSS as you defined your container -->

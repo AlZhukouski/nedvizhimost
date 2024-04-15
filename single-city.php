@@ -30,7 +30,8 @@ $alt = get_post_meta(get_post_thumbnail_id(get_the_ID()), '_wp_attachment_image_
                 if ($estate) { ?>
                 <h2 class="mb-5 text-center">Недвижимость в городе <?php echo get_the_title() ?></h2>
                 <div class="d-flex justify-content-center flex-wrap gap-3">
-                    <?php foreach ($estate as $item) { ?>
+                    <?php foreach ($estate as $item) {
+                        $term = get_the_terms($item->ID, 'type_of_estate') ?>
                         <div class="card" style="width: 18rem;">
                             <img src="<?php echo get_the_post_thumbnail_url($item->ID) ?>" class="card-img-top"
                                  alt="Фото обьекта">
