@@ -5,6 +5,7 @@
  * Copyright 2011-2022 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css");
 :root {
   --bs-blue: #0d6efd;
   --bs-indigo: #6610f2;
@@ -14962,6 +14963,10 @@ figure.woocommerce-product-gallery__wrapper {
 
 .gallery-caption {
   display: block;
+}
+
+.card__img-wrap {
+  height: 200px;
 }
 
 .has-blue-color,

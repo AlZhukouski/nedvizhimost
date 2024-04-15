@@ -1,4 +1,5 @@
 <?php
+
 function register_estate_post_type()
 {
     $labels = array(
@@ -55,8 +56,8 @@ function register_estate_post_type()
         'publicly_queryable' => true,
         'rewrite' => $rewrite,
         'capability_type' => 'page',
-        'show_in_rest'       => true, // Важно!
-        'rest_base'          => 'estate',
+        'show_in_rest' => true, // Важно!
+        'rest_base' => 'estate',
     );
     register_post_type('estate', $args);
 
@@ -176,12 +177,13 @@ function city_metabox($post)
     if ($cities) {
         // чтобы портянка пряталась под скролл...
         echo '
-		<div style="max-height:200px; overflow-y:auto;">
-			<select>
+		<div  style="max-height:200px; overflow-y:auto;">
+			<select name="post_parent" >
+			<option value="0">Не выбрано</option>
 		';
         foreach ($cities as $city) {
             echo '
-				<option name="post_parent" value="' . $city->ID . '" ' . selected($city->ID, $post->post_parent, 0) . '> ' . esc_html($city->post_title) . '</option>';
+				<option value="' . $city->ID . '" ' . selected($city->ID, $post->post_parent, 0) . '> ' . esc_html($city->post_title) . '</option>';
         }
         echo '
 			</select>
@@ -195,11 +197,12 @@ add_action('add_meta_boxes', function () {
 }, 1);
 
 //cf7 hook - dynamically adding cities to the  selector in the main form
-add_filter('wpcf7_form_tag_data_option', function($data, $options, $args) {
+add_filter('wpcf7_form_tag_data_option', function ($data, $options, $args) {
     $data = [];
     $cities = get_posts(array('post_type' => 'city', 'posts_per_page' => -1, 'orderby' => 'post_title', 'order' => 'ASC'));
     foreach ($options as $option) {
         if ($option === 'select_options') {
+            $data[] = 'Не выбрано';
             foreach ($cities as $city) {
                 $data[] = $city->post_title;
             }
